@@ -13,6 +13,7 @@ import { computed, ref, watchEffect } from "vue";
 interface ReferenceType {
   href: string;
   title: string;
+  index: number;
 }
 
 const parsed_markdown = ref<string>("");
@@ -32,23 +33,31 @@ watchEffect(async () => {
     reference.push({
       href: link.getAttribute("href") || "",
       title: link.innerText,
+      index: reference.length + 1
     });
+
+    link.setAttribute("target", "_blank");
+
+    // 在原标签后加入<sup>标签
+    const sup = document.createElement("sup");
+    sup.innerHTML = `<a href="${link.getAttribute("href") || ""}" target="_blank">[${reference.length}]</a>`;
+    link.insertAdjacentElement("afterend", sup);
   });
 
   console.log(reference);
 
   // 转换为引用格式
   const reference_str = reference
-    .map((item, index) => [
-      `<span class="reference-container"><span class="reference-index">[${index + 1}]</span>`,
-      `<span class="reference-title">${item.title}</span>`,
-      `<i><a class="reference-href" href="${item.href}">${item.href}</a></i></span>`
+    .map((item) => [
+      `<span class="reference-container"><span class="reference-index">[${item.index}]</span>`,
+      `<span class="reference-title">${item.title}：</span>`,
+      `<i><a class="reference-href" href="${item.href}" target="_blank">${item.href}</a></i></span>`
     ].join(""))
     .join("\n");
 
   console.log(reference_str);
 
-  parsed_markdown.value = `${parsed}<h1>参考资料</h1><div>${reference_str}</div>`;
+  parsed_markdown.value = `${dom.innerHTML}<h1>参考资料</h1><div>${reference_str}</div>`;
 });
 
 const css_regexp = /\@import\((.*?)\)/g;
