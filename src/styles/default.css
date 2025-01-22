@@ -1,0 +1,67 @@
+.md h1 {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.md h2 {
+    font-size: large;
+    font-weight: bold;
+}
+
+.md h3 {
+    font-size: medium;
+    font-weight: bold;
+}
+
+.md h4 {
+    font-size: small;
+    font-weight: bold;
+}
+
+.md h5 {
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.md h6 {
+    font-size: x-small;
+    font-weight: bold;
+}
+
+.md a {
+    color: rgb(18, 142, 255);
+}
+
+.md .reference-container {
+    display: flex;
+    font-size: 14px;
+    line-height: 1.8em;
+    letter-spacing: 0em;
+}
+
+.md .reference-index {
+    line-height: 1.8em;
+    letter-spacing: 0em;
+    color: rgba(0, 0, 0, 0.6);
+    display: inline;
+    width: 10%;
+    background-image: none;
+    background-position: initial;
+    background-size: initial;
+    background-repeat: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    font-size: 80%;
+    font-family: ptima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    padding-top: 2px;
+}
+
+.md .reference-title {
+    font-family: Georgia, "Microsoft YaHei", PingFangSC-regular, serif;
+    padding-right: .5em;
+}
+
+.md .reference-href {
+    font-family: Georgia, "Microsoft YaHei", PingFangSC-regular, serif;
+}

@@ -1,0 +1,70 @@
+.markdown h1 {
+    padding-left: 10px;
+    font-size: 18px;
+    color: rgb(34, 34, 34);
+    line-height: 1.8em;
+    letter-spacing: 0em;
+    border-style: none none none solid;
+    border-width: 1px 1px 1px 5px;
+    border-color: rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0) rgb(248, 57, 41);
+    border-radius: 0px;
+    align-items: unset;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: auto;
+    box-shadow: none;
+    display: block;
+    font-weight: bold;
+    flex-direction: unset;
+    float: unset;
+    height: auto;
+    justify-content: unset;
+    overflow: unset;
+    text-indent: 0em;
+    text-shadow: none;
+    transform: none;
+    width: auto;
+    -webkit-box-reflect: unset;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-right: 10px;
+    word-spacing: 0em;
+    word-break: break-word;
+    text-align: left;
+    text-wrap: wrap;
+    visibility: visible;
+}
+
+.markdown h2 {
+    color: red;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 1.8em;
+    letter-spacing: 0em;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: auto;
+    width: auto;
+    font-size: 16px;
+    word-spacing: 0em;
+    word-break: break-word;
+    text-align: left;
+    text-wrap: wrap;
+    visibility: visible;
+}
+
+.md a {
+    color: #4007a2;
+    text-decoration: none;
+}

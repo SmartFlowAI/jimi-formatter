@@ -1,0 +1,32 @@
+@import url(./markdown.css);
+
+:root {
+    --global-padding: 1rem;
+}
+
+body {
+    font-family: 'Roboto Mono', Consolas, "PingFang SC", "system-ui", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.btn {
+    border-radius: 10em;
+    padding: 0.5em 1em;
+    border: 1px solid #0004;
+    background-color: rgb(247, 247, 247);
+    transform: translate(10px, 10px);
+    transition: all 0.3s, transform 0.05s;
+}
+
+.btn:hover {
+    background-color: rgb(241, 241, 241);
+}
+
+.btn:active {
+    transform: translate(10px, 10px) scale(0.9);
+    color: rgb(0, 146, 0);
+}
