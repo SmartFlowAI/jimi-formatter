@@ -29,7 +29,7 @@
 }
 
 .md a {
-    color: rgb(18, 142, 255);
+    color: #4007a2;
 }
 
 .md .reference-container {
@@ -44,7 +44,7 @@
     letter-spacing: 0em;
     color: rgba(0, 0, 0, 0.6);
     display: inline;
-    width: 10%;
+    width: 3em;
     background-image: none;
     background-position: initial;
     background-size: initial;
@@ -59,7 +59,7 @@
 
 .md .reference-title {
     font-family: Georgia, "Microsoft YaHei", PingFangSC-regular, serif;
-    padding-right: .5em;
+    /* padding-right: .5em; */
 }
 
 .md .reference-href {
