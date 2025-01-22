@@ -1,5 +1,7 @@
 <template>
-  <button @click="selectContent" class="btn">一键复制</button>
+  <button @click="selectContent" class="btn" :style="{ color: display_copy_success ? 'rgb(0, 146, 0)' : 'black' }">
+    {{ display_copy_success ? "复制成功" : "一键复制" }}
+  </button>
   <div v-html="parsed_markdown" class="markdown md"></div>
   <div v-html="inject_css"></div>
 </template>
@@ -57,7 +59,7 @@ watchEffect(async () => {
 
   console.log(reference_str);
 
-  parsed_markdown.value = `${dom.innerHTML}<h1>参考资料</h1><div>${reference_str}</div>`;
+  parsed_markdown.value = `${dom.innerHTML}` + (reference_str.length > 0 ? `<h1>参考资料</h1><div>${reference_str}</div>` : "");
 });
 
 const css_regexp = /\@import\((.*?)\)/g;
@@ -79,6 +81,8 @@ const inject_css = computed(() => {
   return `<style>${style}</style>`;
 });
 
+const display_copy_success = ref<number>(0);
+
 const selectContent = () => {
   const selection = window.getSelection();
   const range = document.createRange();
@@ -91,8 +95,17 @@ const selectContent = () => {
     selection.addRange(range);
     document.execCommand("copy");
     selection.removeAllRanges();
+    display_copy_success.value = 2000;
   }
 };
+
+setInterval(() => {
+  if (display_copy_success.value > 0) {
+    display_copy_success.value -= 100;
+  } else {
+    display_copy_success.value = 0;
+  }
+}, 100);
 </script>
 
 <style scoped>

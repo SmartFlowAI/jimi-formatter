@@ -41,6 +41,5 @@ import CSSEditor from "./components/CSSEditor.vue";
 .flex:hover {
   border-color: #0005;
   box-shadow: 0 0 30px #0002;
-  /* background-color: rgba(0, 0, 0, 0.01); */
 }
 </style>
