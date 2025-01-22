@@ -18,8 +18,9 @@ body {
     padding: 0.5em 1em;
     border: 1px solid #0004;
     background-color: rgb(247, 247, 247);
-    transform: translate(10px, 10px);
+    transform: translate(0, 10px);
     transition: all 0.3s, transform 0.05s;
+    right: 26px;
 }
 
 .btn:hover {
@@ -27,6 +28,5 @@ body {
 }
 
 .btn:active {
-    transform: translate(10px, 10px) scale(0.9);
-    color: rgb(0, 146, 0);
+    transform: translate(0, 10px) scale(0.9);
 }
