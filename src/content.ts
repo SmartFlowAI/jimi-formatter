@@ -16,10 +16,10 @@ const content = ref<string>(`# 这是大标题
 
 ![这是一张样例图片，用来展示图片备注](https://smartflowai.github.io/jimi-formatter/example.png)
 
-深度学习中，$x$ 通常表示输入，$y$ 通常表示输出，$w$ 通常表示权重，$b$ 通常表示偏置。线性回归的公式为：
+深度学习中，$x$ 通常表示输入，$y$ 通常表示输出，$w$ 通常表示权重，$b$ 通常表示偏置。
 
 $$
-y = w \\cdot x + b
+\\text{Attention}(Q,K,V) = \\underset{\\text{seq}}{\\text{softmax}}\\left(\\frac{QK^{\\top}}{\\sqrt{d_k}}\\right) V
 $$
 
 > 你可以直接黏贴图片进来，它们会以形如 \`smartflow://image/xxx\` 的特殊协议存储。

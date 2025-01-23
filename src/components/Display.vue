@@ -21,8 +21,8 @@ const md = markdownit({
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(str, { language: lang }).value;
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (__) {}
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (__) { }
     }
     return "";
   }
@@ -100,6 +100,19 @@ watchEffect(async () => {
     if (svg) {
 
       if (mathjax.getAttribute("display") === "true") {
+
+        const width = svg.getAttribute("width");
+        if (width) {
+          svg.style.width = `${parseFloat(width.replace("ex", "")) / 2}em`;
+        }
+
+        const height = svg.getAttribute("height");
+        if (height) {
+          svg.style.height = `${parseFloat(height.replace("ex", "")) / 2}em`;
+        }
+        svg.removeAttribute("width");
+        svg.removeAttribute("height");
+
         const display = document.createElement("p");
         display.classList.add("mathjax-display");
         display.classList.add("jimi-");
