@@ -119,3 +119,17 @@
     margin-inline-start: 0px !important;
     margin-inline-end: 0px !important;
 }
+
+.md .underline {
+    text-decoration: underline !important;
+    text-decoration-style: dashed !important;
+    text-underline-offset: .1em;
+    text-decoration-thickness: 1px !important;
+}
+
+.md figcaption {
+    font-size: 0.8em;
+    color: #666;
+    text-align: center;
+    /* margin-top: 0.5em; */
+}

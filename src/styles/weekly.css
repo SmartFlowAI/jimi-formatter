@@ -1,14 +1,60 @@
+.markdown {
+    font-family: Georgia, "Microsoft YaHei", PingFangSC-regular, serif;
+}
+
 .markdown h1 {
-    padding-left: 10px;
+    font-size: 22px;
+    color: rgb(237, 74, 39);
+    line-height: 1.5em;
+    letter-spacing: 0em;
+    padding-top: 20px;
+    align-items: center;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-image: none;
+    background-origin: padding-box;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: auto;
+    border-style: none;
+    border-width: 1px;
+    border-color: rgb(0, 0, 0);
+    border-radius: 0px;
+    box-shadow: none;
+    display: flex;
+    font-weight: bold;
+    flex-direction: column;
+    float: unset;
+    height: auto;
+    justify-content: center;
+    overflow: unset;
+    text-indent: 0em;
+    text-shadow: none;
+    transform: none;
+    width: auto;
+    -webkit-box-reflect: unset;
+    visibility: visible;
+}
+
+.markdown h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    line-height: 1.5em;
+    overflow: unset;
+    text-shadow: none;
+    transform: none;
+    width: auto;
+    -webkit-box-reflect: unset;
+    visibility: visible;
     font-size: 18px;
     color: rgb(34, 34, 34);
     line-height: 1.8em;
     letter-spacing: 0em;
+    padding-left: 10px;
     border-style: none none none solid;
     border-width: 1px 1px 1px 5px;
     border-color: rgb(0, 0, 0) rgb(0, 0, 0) rgb(0, 0, 0) rgb(248, 57, 41);
     border-radius: 0px;
-    align-items: unset;
     background-attachment: scroll;
     background-clip: border-box;
     background-image: none;
@@ -19,49 +65,6 @@
     box-shadow: none;
     display: block;
     font-weight: bold;
-    flex-direction: unset;
-    float: unset;
-    height: auto;
-    justify-content: unset;
-    overflow: unset;
-    text-indent: 0em;
-    text-shadow: none;
-    transform: none;
-    width: auto;
-    -webkit-box-reflect: unset;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    padding-right: 10px;
-    word-spacing: 0em;
-    word-break: break-word;
-    text-align: left;
-    text-wrap: wrap;
-    visibility: visible;
-}
-
-.markdown h2 {
-    color: red;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    line-height: 1.8em;
-    letter-spacing: 0em;
-    padding-right: 10px;
-    padding-left: 10px;
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-image: none;
-    background-origin: padding-box;
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    background-size: auto;
-    width: auto;
-    font-size: 16px;
-    word-spacing: 0em;
-    word-break: break-word;
-    text-align: left;
-    text-wrap: wrap;
-    visibility: visible;
 }
 
 .md a {
@@ -122,9 +125,15 @@
     color: red;
 }
 
-.md u {
-    text-decoration: underline !important;
-    text-decoration-style: dashed !important;
-    text-underline-offset: 5px;
-    text-decoration-thickness: 1px !important;
+.md figure {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.md figure img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    margin-right: 0;
 }

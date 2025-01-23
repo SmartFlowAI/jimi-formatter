@@ -4,11 +4,17 @@ const content = ref<string>(`# 这是大标题
 
 ## 这是二级标题
 
-这是一段文字，这里**加粗**了，这里*倾斜*了，这里增加了<u>下划线</u>。
+这是一段文字，这里**加粗**了，这里*倾斜*了，这里是***加粗斜体***，这里增加了<u>下划线</u>。
+
+1. 没病走两步
+2. 走出一个一日千里
+
++ 走出一个虎虎生风
++ 走出个恍如隔世
 
 这是一张图片：
 
-![](https://github.com/vansin.png)
+![这是一张样例图片，用来展示图片备注](./example.png)
 
 深度学习中，$x$ 通常表示输入，$y$ 通常表示输出，$w$ 通常表示权重，$b$ 通常表示偏置。线性回归的公式为：
 
@@ -17,6 +23,8 @@ y = w \\cdot x + b
 $$
 
 > 你可以直接黏贴图片进来，它们会以形如 \`smartflow://image/xxx\` 的特殊协议存储。
+
+\`font-family: "PingFang SC", "system-ui", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;\`
 
 \`\`\`js
 links.forEach((link) => {

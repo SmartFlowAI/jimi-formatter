@@ -10,7 +10,7 @@
 
 .markdown blockquote {
     display: inline-block;
-    /* width: 100%; */
+    width: 100%;
     vertical-align: top;
     background-color: rgba(106, 118, 241, 0.07);
     padding: 25px;
