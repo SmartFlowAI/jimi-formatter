@@ -32,6 +32,11 @@
     color: #4007a2;
 }
 
+.md .link {
+    color: #4007a2;
+    white-space: break-spaces;
+}
+
 .md .reference-container {
     display: flex;
     font-size: 14px;
@@ -45,6 +50,7 @@
     color: rgba(0, 0, 0, 0.6);
     display: inline;
     width: 3em;
+    min-width: 3em;
     background-image: none;
     background-position: initial;
     background-size: initial;
@@ -59,17 +65,44 @@
 
 .md .reference-title {
     font-family: Georgia, "Microsoft YaHei", PingFangSC-regular, serif;
-    /* padding-right: .5em; */
+    margin: 0;
 }
 
 .md .reference-href {
     font-family: Georgia, "Microsoft YaHei", PingFangSC-regular, serif;
+    font-style: italic;
 }
 
 .md code {
-    font-family: 'Roboto Mono', Consolas, "PingFang SC", "system-ui", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+    font-family: 'Roboto Mono', Consolas, Monaco, Menlo, monospace;
     font-size: 0.9em;
     background-color: #f8f8f8;
     padding: 0.2em 0.4em;
     border-radius: 0.3em;
+}
+
+.md pre code {
+    font-family: 'Roboto Mono', Consolas, Monaco, Menlo, monospace;
+    font-size: 0.9em;
+    background-color: #31363f !important;
+    padding: 0.2em 0.4em;
+    border-radius: 0.3em;
+}
+
+.md pre {
+    font-family: 'Roboto Mono', Consolas, Monaco, Menlo, monospace;
+    font-size: 0.9em;
+    background-color: #31363f;
+    color: white;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    white-space: break-spaces;
+}
+
+.md .mathjax-display {
+    direction: ltr;
+    display: block;
+    text-align: center;
+    margin: 1em 0;
+    position: relative;
 }

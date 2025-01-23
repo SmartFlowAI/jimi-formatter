@@ -69,6 +69,11 @@
     text-decoration: none;
 }
 
+.md .link {
+    color: rgb(18, 142, 255);
+    text-decoration: none;
+}
+
 .md .reference-container {
     display: flex;
     font-size: 14px;
@@ -96,9 +101,30 @@
 
 .md .reference-title {
     font-family: Georgia, "Microsoft YaHei", PingFangSC-regular, serif;
-    padding-right: .5em;
+    /* padding-right: .5em; */
 }
 
 .md .reference-href {
     font-family: Georgia, "Microsoft YaHei", PingFangSC-regular, serif;
+}
+
+.md blockquote {
+    border-left: 3px solid #DBDBDB;
+    color: rgba(0, 0, 0, 0.55);
+    font-size: 15px;
+    text-indent: 0;
+    margin: 0;
+    padding: .5em 1em;
+}
+
+.md strong {
+    font-weight: bold;
+    color: red;
+}
+
+.md u {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1px;
 }
