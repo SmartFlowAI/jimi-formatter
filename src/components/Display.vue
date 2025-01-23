@@ -9,8 +9,24 @@
 <script setup lang="ts">
 import content, { replace_image_bed, user_css } from "../content.ts";
 import style_sheets from "../styles/style.ts";
-import { marked } from "marked";
+import markdownit from "markdown-it";
+import mathjax from "markdown-it-mathjax3";
+import hljs from "highlight.js";
+import "highlight.js/styles/github-dark.min.css";
 import { computed, ref, watchEffect } from "vue";
+
+const md = markdownit({
+  html: true,
+  highlight: (str, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(str, { language: lang }).value;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (__) {}
+    }
+    return "";
+  }
+}).use(mathjax);
 
 interface ReferenceType {
   href: string;
@@ -20,46 +36,119 @@ interface ReferenceType {
 
 const parsed_markdown = ref<string>("");
 
+const link_white_list = [
+  "mp.weixin.qq.com",
+];
+
 watchEffect(async () => {
-  const parsed = await marked.parse(replace_image_bed(content.value));
+  const parsed = md.render(replace_image_bed(content.value));
 
   const dom = document.createElement("div");
   dom.innerHTML = parsed;
 
+  // 找出所有mjx-container标签，仅保留svg，其余的删除
+  const all_mathjax: NodeListOf<HTMLElement> = dom.querySelectorAll("mjx-container");
+  all_mathjax.forEach((mathjax) => {
+    const svg = mathjax.querySelector("svg");
+    if (svg) {
+
+      if (mathjax.getAttribute("display") === "true") {
+        const display = document.createElement("p");
+        display.classList.add("mathjax-display");
+        display.classList.add("jimi-");
+        display.innerHTML = svg.outerHTML;
+        mathjax.insertAdjacentElement("afterend", display);
+        mathjax.remove();
+      } else {
+        mathjax.insertAdjacentElement("afterend", svg);
+        mathjax.remove();
+      }
+    } else {
+      mathjax.remove();
+    }
+  });
+
   // 找出所有的a标签
-  const links = dom.querySelectorAll("a");
+  const all_links: NodeListOf<HTMLAnchorElement> = dom.querySelectorAll("a");
 
   const reference: ReferenceType[] = [];
 
+  const links: HTMLAnchorElement[] = [];
+
+  // 过滤掉在白名单中的链接
+  all_links.forEach((link) => {
+    if (link_white_list.some((white) => link.href.includes(white))) {
+      link.setAttribute("target", "_blank");
+      return;
+    }
+
+    links.push(link);
+  });
+
   links.forEach((link) => {
+    const href = link.getAttribute("href") || "";
+    const title = link.innerText;
+
+    // 检查是否已经存在
+    for (const item of reference) {
+      if (item.href === href) {
+        const sup = document.createElement("sup");
+        sup.innerHTML = `<span class="link" href="${href}" target="_blank">[${item.index}]</span>`;
+        link.insertAdjacentElement("afterend", sup);
+        return;
+      }
+    }
+
+    const index = reference.length + 1;
+
     reference.push({
-      href: link.getAttribute("href") || "",
-      title: link.innerText,
-      index: reference.length + 1
+      href: href,
+      title: title,
+      index: index
     });
 
-    link.setAttribute("target", "_blank");
+    link.removeAttribute("href");
 
     // 在原标签后加入<sup>标签
     const sup = document.createElement("sup");
-    sup.innerHTML = `<a href="${link.getAttribute("href") || ""}" target="_blank">[${reference.length}]</a>`;
+    sup.innerHTML = `<span class="link" href="${href}" target="_blank">[${index}]</span>`;
     link.insertAdjacentElement("afterend", sup);
   });
 
-  console.log(reference);
+  // 将所有的a标签转换为span标签
+  links.forEach((link) => {
+    const span = document.createElement("span");
+    span.innerHTML = link.innerHTML;
+
+    // 处理attr
+    const attrs = link.attributes;
+    for (let i = 0; i < attrs.length; i++) {
+      span.setAttribute(attrs[i].name, attrs[i].value);
+    }
+
+    span.classList.add("link");
+
+    link.replaceWith(span);
+  });
+
+  // console.log(reference);
 
   // 转换为引用格式
   const reference_str = reference
     .map((item) => [
       `<span class="reference-container"><span class="reference-index">[${item.index}]</span>`,
-      `<span class="reference-title">${item.title}：</span>`,
-      `<i><a class="reference-href" href="${item.href}" target="_blank">${item.href}</a></i></span>`
-    ].join(""))
-    .join("\n");
+      `<p class="reference-title">${item.title}：`,
+      `<span class="reference-href link">${item.href}</span></p></span>`
+    ].join("")).join("\n");
 
-  console.log(reference_str);
+  parsed_markdown.value = `${dom.innerHTML}` + (reference_str.length > 0 ? `<h1>参考资料</h1><section>${reference_str}</section>` : "");
 
-  parsed_markdown.value = `${dom.innerHTML}` + (reference_str.length > 0 ? `<h1>参考资料</h1><div>${reference_str}</div>` : "");
+  // console.log(parsed_markdown.value);
+
+  const reference_dom = document.createElement("div");
+  reference_dom.innerHTML = parsed_markdown.value;
+
+  // console.log(reference_dom);
 });
 
 const css_regexp = /\@import\((.*?)\)/g;
