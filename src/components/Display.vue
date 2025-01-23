@@ -31,6 +31,7 @@ const md = markdownit({
 interface ReferenceType {
   href: string;
   title: string;
+  explain: string;
   index: number;
 }
 
@@ -39,6 +40,16 @@ const parsed_markdown = ref<string>("");
 const link_white_list = [
   "mp.weixin.qq.com",
 ];
+
+const parse_a_title = (title: string) => {
+  const regexp = /\s"((?:[^"\\]|\\["\\])*)"$/g;
+  const matches = title.match(regexp);
+  if (matches) {
+    return [title.replace(matches[0], ""), matches[0].slice(2, -1)];
+  } else {
+    return [title, title];
+  }
+};
 
 watchEffect(async () => {
   const parsed = md.render(replace_image_bed(content.value));
@@ -51,6 +62,21 @@ watchEffect(async () => {
   all_images.forEach((image) => {
 
     if ((image.getAttribute("alt") || "") === "") {
+      return;
+    }
+
+    // 如果在p标签中，转换为figure标签
+    if (image.parentElement?.tagName === "P") {
+      const figure = document.createElement("figure");
+      figure.classList.add("image");
+      figure.innerHTML = image.outerHTML;
+
+      // 添加figcaption标签
+      const figcaption = document.createElement("figcaption");
+      figcaption.innerHTML = image.getAttribute("alt") || "";
+      figure.appendChild(figcaption);
+
+      image.parentElement.replaceWith(figure);
       return;
     }
 
@@ -138,11 +164,16 @@ watchEffect(async () => {
 
     const index = reference.length + 1;
 
+    const [title_, expain] = parse_a_title(title);
+
     reference.push({
       href: href,
-      title: title,
+      title: title_,
+      explain: expain,
       index: index
     });
+
+    link.innerText = title_;
 
     link.removeAttribute("href");
 
@@ -174,7 +205,7 @@ watchEffect(async () => {
   const reference_str = reference
     .map((item) => [
       `<span class="reference-container"><span class="reference-index">[${item.index}]</span>`,
-      `<p class="reference-title">${item.title}：`,
+      `<p class="reference-title">${item.explain}：`,
       `<span class="reference-href link">${item.href}</span></p></span>`
     ].join("")).join("\n");
 
@@ -185,7 +216,7 @@ watchEffect(async () => {
   const reference_dom = document.createElement("div");
   reference_dom.innerHTML = parsed_markdown.value;
 
-  console.log(parsed_markdown.value);
+  // console.log(parsed_markdown.value);
 });
 
 const css_regexp = /\@import\((.*?)\)/g;

@@ -14,7 +14,7 @@ const content = ref<string>(`# 这是大标题
 
 这是一张图片：
 
-![这是一张样例图片，用来展示图片备注](./example.png)
+![这是一张样例图片，用来展示图片备注](https://smartflowai.github.io/jimi-formatter/example.png)
 
 深度学习中，$x$ 通常表示输入，$y$ 通常表示输出，$w$ 通常表示权重，$b$ 通常表示偏置。线性回归的公式为：
 
@@ -53,7 +53,15 @@ links.forEach((link) => {
 
 [WF-VAE: Enhancing Video VAE by Wavelet-Driven Energy Flow for Latent Video Diffusion Model](https://arxiv.org/abs/2411.17459v2)
 
-[HunyuanVideo: A Systematic Framework For Large Video Generative Models](http://arxiv.org/abs/2412.03603)`);
+[HunyuanVideo: A Systematic Framework For Large Video Generative Models "混元视频大模型"](http://arxiv.org/abs/2412.03603)
+
+# 文章分享
+
+[免费 | 万人共学的书生大模型实战营公益课程来啦！](https://mp.weixin.qq.com/s/FaSnM79OrrBiY4HJvR0_gg)
+
+[免费 "万人共学的书生大模型实战营公益课程来啦"](https://mp.weixin.qq.com/s/FaSnM79OrrBiY4HJvR0_gg)
+
+<https://mp.weixin.qq.com/s/dXcxA2lt8_TTmkYYMWxbSA>`);
 
 export const content_cursor_position = ref<number>(0);
 
