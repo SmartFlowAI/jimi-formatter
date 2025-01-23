@@ -4,19 +4,48 @@ const content = ref<string>(`# 这是大标题
 
 ## 这是二级标题
 
-这是一段文字，这里**加粗**了，这里*倾斜*了。
+这是一段文字，这里**加粗**了，这里*倾斜*了，这里增加了<u>下划线</u>。
 
 这是一张图片：
 
-![](https://github-readme-stats.vercel.app/api?username=vansin&show_icons=true)
+![](https://github.com/vansin.png)
 
-你可以直接黏贴图片进来，它们会以形如 \`smartflow://image/xxx\` 的特殊协议存储。
+深度学习中，$x$ 通常表示输入，$y$ 通常表示输出，$w$ 通常表示权重，$b$ 通常表示偏置。线性回归的公式为：
+
+$$
+y = w \\cdot x + b
+$$
+
+> 你可以直接黏贴图片进来，它们会以形如 \`smartflow://image/xxx\` 的特殊协议存储。
+
+\`\`\`js
+links.forEach((link) => {
+    reference.push({
+        href: link.getAttribute("href") || "",
+        title: link.innerText,
+        index: reference.length + 1
+    });
+
+    link.setAttribute("target", "_blank");
+
+    // 在原标签后加入<sup>标签
+    const sup = document.createElement("sup");
+    sup.innerHTML = \`<a href="$\{link.getAttribute("href") || ""}" target="_blank">[$\{reference.length}]</a>\`;
+    link.insertAdjacentElement("afterend", sup);
+});
+\`\`\`
 
 众所周知，[Jimi Formatter](https://github.com/SmartFlowAI/jimi-formatter) 会自动在下方添加参考资料。
 
 你可以自定义格式：
 
-<div class="custom">自定义文字格式</div>`);
+<p class="custom">自定义文字格式</p>
+
+# 论文推荐
+
+[WF-VAE: Enhancing Video VAE by Wavelet-Driven Energy Flow for Latent Video Diffusion Model](https://arxiv.org/abs/2411.17459v2)
+
+[HunyuanVideo: A Systematic Framework For Large Video Generative Models](http://arxiv.org/abs/2412.03603)`);
 
 export const content_cursor_position = ref<number>(0);
 
@@ -27,8 +56,10 @@ export const user_css = ref<string>(`/* 通过宏直接引入你需要的格式�
 
 /* 这里你可以自定义CSS */
 .md .custom {
-    background: linear-gradient(170deg, blue, pink);
-    color: white;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+                linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+                linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+    color: linear-gradient(170deg, blue, pink);
     width: max-content
 }`);
 
