@@ -200,6 +200,7 @@ setInterval(() => {
 <style scoped>
 .markdown {
   overflow: auto;
+  overflow-x: hidden;
   width: calc(100% - var(--global-padding) * 2);
   height: calc(100% - var(--global-padding) * 2);
   padding: var(--global-padding);

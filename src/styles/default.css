@@ -90,6 +90,7 @@
 }
 
 .md pre {
+    max-width: 100%;
     font-family: 'Roboto Mono', Consolas, Monaco, Menlo, monospace;
     font-size: 0.9em;
     background-color: #31363f;
@@ -105,4 +106,16 @@
     text-align: center;
     margin: 1em 0;
     position: relative;
+}
+
+.md blockquote {
+    max-width: 100%;
+    /* width: 100%; */
+}
+
+.markdown>p {
+    margin-block-start: 1em !important;
+    margin-block-end: 1em !important;
+    margin-inline-start: 0px !important;
+    margin-inline-end: 0px !important;
 }

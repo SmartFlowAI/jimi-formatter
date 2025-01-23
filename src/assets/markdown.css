@@ -5,6 +5,7 @@
 
 .markdown {
     font-family: "PingFang SC", "system-ui", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+    line-height: 1.6;
 }
 
 .markdown blockquote {
@@ -16,4 +17,24 @@
     align-self: flex-start;
     flex: 0 0 auto;
     visibility: visible;
+}
+
+.markdown blockquote p {
+    margin-block-start: 1em !important;
+    margin-block-end: 1em !important;
+    margin-inline-start: 0px !important;
+    margin-inline-end: 0px !important;
+}
+
+.markdown>p {
+    margin-top: 0px;
+    margin-bottom: 24px;
+}
+
+.markdown {
+    text-underline-offset: 0.1em;
+}
+
+.markdown * {
+    max-width: 100% !important;
 }
