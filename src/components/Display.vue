@@ -46,6 +46,27 @@ watchEffect(async () => {
   const dom = document.createElement("div");
   dom.innerHTML = parsed;
 
+  // 找出所有的img标签，将alt属性的值转换为figcaption标签
+  const all_images: NodeListOf<HTMLImageElement> = dom.querySelectorAll("img");
+  all_images.forEach((image) => {
+
+    if ((image.getAttribute("alt") || "") === "") {
+      return;
+    }
+
+    // 转换为figure标签
+    const figure = document.createElement("figure");
+    figure.classList.add("image");
+    figure.innerHTML = image.outerHTML;
+
+    // 添加figcaption标签
+    const figcaption = document.createElement("figcaption");
+    figcaption.innerHTML = image.getAttribute("alt") || "";
+    figure.appendChild(figcaption);
+
+    image.replaceWith(figure);
+  });
+
   // 找出所有mjx-container标签，仅保留svg，其余的删除
   const all_mathjax: NodeListOf<HTMLElement> = dom.querySelectorAll("mjx-container");
   all_mathjax.forEach((mathjax) => {
@@ -66,6 +87,22 @@ watchEffect(async () => {
     } else {
       mathjax.remove();
     }
+  });
+
+  // 将u标签转换为span标签
+  const all_underline: NodeListOf<HTMLElement> = dom.querySelectorAll("u");
+  all_underline.forEach((underline) => {
+    const span = document.createElement("span");
+    span.innerHTML = underline.innerHTML;
+    span.classList.add("underline");
+
+    // 处理attr
+    const attrs = underline.attributes;
+    for (let i = 0; i < attrs.length; i++) {
+      span.setAttribute(attrs[i].name, attrs[i].value);
+    }
+
+    underline.replaceWith(span);
   });
 
   // 找出所有的a标签
@@ -148,7 +185,7 @@ watchEffect(async () => {
   const reference_dom = document.createElement("div");
   reference_dom.innerHTML = parsed_markdown.value;
 
-  // console.log(reference_dom);
+  console.log(parsed_markdown.value);
 });
 
 const css_regexp = /\@import\((.*?)\)/g;
