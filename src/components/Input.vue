@@ -5,6 +5,7 @@
     v-model="content"
     @click="updateCursor"
     @select="updateCursor"
+    spellcheck="false"
   ></textarea>
 </template>
 
