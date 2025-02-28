@@ -1,6 +1,6 @@
 import { ref } from "vue";
 
-const content = ref<string>(`# 这是大标题
+const content = ref<string>(import.meta.env.VITE_JIMI_CONTENT ? import.meta.env.VITE_JIMI_CONTENT : `# 这是大标题
 
 ## 这是二级标题
 
@@ -67,7 +67,7 @@ export const content_cursor_position = ref<number>(0);
 
 export const image_bed = new Map();
 
-export const user_css = ref<string>(`/* 通过宏直接引入你需要的格式包 */
+export const user_css = ref<string>(import.meta.env.VITE_JIMI_STYLE ? import.meta.env.VITE_JIMI_STYLE : `/* 通过宏直接引入你需要的格式包 */
 @import(default, weekly)
 
 /* 这里你可以自定义CSS */

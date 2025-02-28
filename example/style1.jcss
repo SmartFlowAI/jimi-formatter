@@ -1,0 +1,11 @@
+/* 通过宏直接引入你需要的格式包 */
+@import(default, weekly)
+
+/* 这里你可以自定义CSS */
+.md .custom {
+    background: linear-gradient(217deg, rgba(255, 0, 0, .8), rgba(255, 0, 0, 0) 70.71%),
+        linear-gradient(127deg, rgba(0, 255, 0, .8), rgba(0, 255, 0, 0) 70.71%),
+        linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%);
+    color: linear-gradient(170deg, blue, pink);
+    width: max-content
+}

@@ -1,5 +1,6 @@
 <template>
-  <button @click="selectContent" class="btn" :style="{ color: display_copy_success ? 'rgb(0, 146, 0)' : 'black' }">
+  <button @click="selectContent" class="btn" v-show="!VITE_SINGLE_FILE_RENDER"
+    :style="{ color: display_copy_success ? 'rgb(0, 146, 0)' : 'black' }">
     {{ display_copy_success ? "复制成功" : "一键复制" }}
   </button>
   <div v-html="parsed_markdown" class="markdown md"></div>
@@ -14,6 +15,8 @@ import mathjax from "markdown-it-mathjax3";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.min.css";
 import { computed, ref, watchEffect } from "vue";
+
+const VITE_SINGLE_FILE_RENDER = import.meta.env.VITE_SINGLE_FILE_RENDER == "True";
 
 const md = markdownit({
   html: true,
