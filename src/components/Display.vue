@@ -20,7 +20,8 @@ import mathjax from "markdown-it-mathjax3";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.min.css";
 import { computed, ref, watchEffect } from "vue";
-import { encode, decode } from "js-base64";
+import { encode } from "js-base64";
+import router from "@/router/index.ts";
 
 const VITE_SINGLE_FILE_RENDER = import.meta.env.VITE_SINGLE_FILE_RENDER == "True";
 
@@ -277,17 +278,17 @@ const goToEmbed = () => {
     const encodedStyle = encode(user_css.value);
 
     const urlProps = new URLSearchParams();
-    urlProps.set('content', encodedContent);
-    urlProps.set('style', encodedStyle);
+    urlProps.set("content", encodedContent);
+    urlProps.set("style", encodedStyle);
 
     // 构建 embed 页面 URL
-    const embedUrl = `/embed?${urlProps.toString()}`;
+    const embedUrl = router.resolve({ name: "embed", query: Object.fromEntries(urlProps) }).href;
 
     // 在新窗口中打开 embed 页面
-    window.open(embedUrl, '_blank');
+    window.open(embedUrl, "_blank");
   } catch (error) {
-    console.error('Error encoding content for embed:', error);
-    alert('编码内容时出错，请检查内容是否包含特殊字符');
+    console.error("Error encoding content for embed:", error);
+    alert("编码内容时出错，请检查内容是否包含特殊字符");
   }
 };
 
