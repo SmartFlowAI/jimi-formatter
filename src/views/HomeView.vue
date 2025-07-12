@@ -17,7 +17,7 @@ const VITE_SINGLE_FILE_RENDER = import.meta.env.VITE_SINGLE_FILE_RENDER == "True
 
     <!-- Display Panel -->
     <div class="flex">
-      <Display :show_copy_button="true" :show_embed_button="true" />
+      <Display :show_copy_button="true" :show_embed_button="true" :embed_mode="false" />
     </div>
   </div>
 </template>

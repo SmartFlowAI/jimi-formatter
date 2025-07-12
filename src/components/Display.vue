@@ -8,7 +8,7 @@
       嵌入模式
     </button>
   </div>
-  <div v-html="parsed_markdown" class="markdown md"></div>
+  <div v-html="parsed_markdown" class="markdown md" :class="(embed_mode ? 'main-display' : '')"></div>
   <div v-html="inject_css"></div>
 </template>
 
@@ -26,11 +26,12 @@ import router from "@/router/index.ts";
 const VITE_SINGLE_FILE_RENDER = import.meta.env.VITE_SINGLE_FILE_RENDER == "True";
 
 const props = defineProps<{
+  embed_mode?: boolean;
   show_copy_button?: boolean;
   show_embed_button?: boolean;
 }>();
 
-const { show_copy_button, show_embed_button } = props;
+const { show_copy_button, show_embed_button, embed_mode } = props;
 
 const md = markdownit({
   html: true,

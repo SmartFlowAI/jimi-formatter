@@ -1,34 +1,73 @@
 @import url(./markdown.css);
 
 :root {
-    --global-padding: 1rem;
+  --global-padding: 1rem;
 }
 
 body {
-    font-family: 'Roboto Mono', Consolas, "PingFang SC", "system-ui", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  font-family: 'Roboto Mono', Consolas, "PingFang SC", "system-ui", "-apple-system", "BlinkMacSystemFont", "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .btn {
-    border-radius: 10em;
-    padding: 0.5em 1em;
-    border: 1px solid #0004;
-    background-color: rgb(247, 247, 247);
-    transform: translate(0, 10px);
-    transition: all 0.3s, transform 0.05s;
-    right: 26px;
+  border-radius: 10em;
+  padding: 0.5em 1em;
+  border: 1px solid #0004;
+  background-color: rgb(247, 247, 247);
+  transform: translate(0, 10px);
+  transition: all 0.3s, transform 0.05s;
+  right: 26px;
 
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .btn:hover {
-    background-color: rgb(241, 241, 241);
+  background-color: rgb(241, 241, 241);
 }
 
 .btn:active {
-    transform: translate(0, 10px) scale(0.9);
+  transform: translate(0, 10px) scale(0.9);
+}
+
+.main-display {
+  width: 90%;
+  max-width: 900px;
+  min-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  transition: width 0.2s;
+  height: fit-content !important;
+}
+
+@media (max-width: 900px) {
+  .main-display {
+    width: 96%;
+    max-width: 700px;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 700px) {
+  .main-display {
+    width: 98%;
+    max-width: 98%;
+    min-width: 160px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+@media (max-width: 500px) {
+  .main-display {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
 }
