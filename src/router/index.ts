@@ -1,21 +1,19 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import EmbedView from '../views/EmbedView.vue'
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: "/",
+      name: "home",
+      component: () => import("../views/HomeView.vue")
     },
     {
-      path: '/embed',
-      name: 'embed',
-      component: EmbedView
+      path: "/embed",
+      name: "embed",
+      component: () => import("../views/EmbedView.vue")
     }
   ]
-})
+});
 
-export default router
+export default router;
