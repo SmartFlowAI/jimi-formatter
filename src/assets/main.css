@@ -21,6 +21,8 @@ body {
     transform: translate(0, 10px);
     transition: all 0.3s, transform 0.05s;
     right: 26px;
+
+    font-weight: normal;
 }
 
 .btn:hover {

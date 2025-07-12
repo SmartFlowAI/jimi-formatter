@@ -1,8 +1,13 @@
 <template>
-  <button @click="selectContent" class="btn" v-show="!VITE_SINGLE_FILE_RENDER"
-    :style="{ color: display_copy_success ? 'rgb(0, 146, 0)' : 'black' }">
-    {{ display_copy_success ? "复制成功" : "一键复制" }}
-  </button>
+  <div class="button-container" v-show="!VITE_SINGLE_FILE_RENDER">
+    <button v-if="show_copy_button !== false" @click="selectContent" class="btn"
+      :style="{ color: display_copy_success ? 'rgb(0, 146, 0)' : 'black' }">
+      {{ display_copy_success ? "复制成功" : "一键复制" }}
+    </button>
+    <button v-if="show_embed_button !== false" @click="goToEmbed" class="btn embed-btn">
+      嵌入模式
+    </button>
+  </div>
   <div v-html="parsed_markdown" class="markdown md"></div>
   <div v-html="inject_css"></div>
 </template>
@@ -15,8 +20,16 @@ import mathjax from "markdown-it-mathjax3";
 import hljs from "highlight.js";
 import "highlight.js/styles/github-dark.min.css";
 import { computed, ref, watchEffect } from "vue";
+import { encode, decode } from "js-base64";
 
 const VITE_SINGLE_FILE_RENDER = import.meta.env.VITE_SINGLE_FILE_RENDER == "True";
+
+const props = defineProps<{
+  show_copy_button?: boolean;
+  show_embed_button?: boolean;
+}>();
+
+const { show_copy_button, show_embed_button } = props;
 
 const md = markdownit({
   html: true,
@@ -256,6 +269,28 @@ const inject_css = computed(() => {
 
 const display_copy_success = ref<number>(0);
 
+const goToEmbed = () => {
+  try {
+    // 使用 js-base64 进行 UTF-8 安全的 base64 编码
+    const encodedContent = encode(content.value);
+    // 将当前样式也进行 base64 编码，避免 URL 编码问题
+    const encodedStyle = encode(user_css.value);
+
+    const urlProps = new URLSearchParams();
+    urlProps.set('content', encodedContent);
+    urlProps.set('style', encodedStyle);
+
+    // 构建 embed 页面 URL
+    const embedUrl = `/embed?${urlProps.toString()}`;
+
+    // 在新窗口中打开 embed 页面
+    window.open(embedUrl, '_blank');
+  } catch (error) {
+    console.error('Error encoding content for embed:', error);
+    alert('编码内容时出错，请检查内容是否包含特殊字符');
+  }
+};
+
 const selectContent = () => {
   const selection = window.getSelection();
   const range = document.createRange();
@@ -291,7 +326,20 @@ setInterval(() => {
   padding-right: calc(var(--global-padding) * 0.8);
 }
 
-.btn {
+.button-container {
   position: absolute;
+  display: flex;
+  right: 30px;
+  gap: 10px;
+  z-index: 10;
 }
+
+.btn:hover {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+/* .embed-btn {
+  color: #0066cc;
+} */
 </style>
